@@ -1,6 +1,27 @@
 import React from "react";
+import axios from "axios";
 
-function Sendpart({ endGame }) {
+function Sendpart({ endGame, submit, setScore }) {
+  const [answer, setAnswer] = React.useState("");
+  
+
+  function handleChange(event) {
+    setAnswer(event.target.value);
+  }
+
+  async function handleSubmit() {
+    const response = await axios.post("http://localhost:5000/submit", { answer });
+    if (response.data.correct === true) {
+      setScore(response.data.score);
+      submit();
+      setAnswer("");
+    }
+    else{
+      endGame();
+    }
+  }
+
+
   return(
     <div>
       <div className="input-wrapper">
@@ -9,12 +30,14 @@ function Sendpart({ endGame }) {
             className="answer-input"
             placeholder="Enter the capital city"
             autoComplete="off"
+            value={answer}
+            onChange ={handleChange}
           />
           <span className="input-icon">🌍</span>
         </div>
 
         <div className="button-group">
-          <button className="btn btn-submit" id="submitBtn" onClick={endGame}>
+          <button className="btn btn-submit" id="submitBtn" onClick={handleSubmit}>
             Submit Answer
           </button>
           <button className="btn btn-restart" id="restartBtn">

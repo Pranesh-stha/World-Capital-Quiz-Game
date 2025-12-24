@@ -21,7 +21,7 @@ body,
 }
 
 :root {
-  --primary: #ffd700;
+  --primary: #f0e49d;
   --primary-dark: #ffc700;
   --accent: #ff6b35;
   --accent-light: #ff8555;
@@ -348,7 +348,9 @@ body::before {
   padding: 18px;
   background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
   border-radius: 12px;
-  border-left: 4px solid var(--accent);
+  /* Changed from left border to top and bottom borders for symmetrical design */
+  border-top: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
 }
 
 .game-over-message p {

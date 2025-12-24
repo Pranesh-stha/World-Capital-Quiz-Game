@@ -1,6 +1,12 @@
 import React from "react";
+import axios from "axios";
 
 function Resultcard( {startGame} ) {
+
+  async function handlePlayAgain() {
+  await axios.post("http://localhost:5000/reset");
+  startGame();
+}
   return (
     <div className="game-over-card active" id="gameOverCard">
       <div className="game-over-header">
@@ -21,7 +27,7 @@ function Resultcard( {startGame} ) {
       </div>
 
       <div className="game-over-button-group">
-        <button className="btn btn-restart-final" id="playAgainBtn" onClick={startGame}>
+        <button className="btn btn-restart-final" id="playAgainBtn" onClick={handlePlayAgain}>
           Play Again
         </button>
       </div>

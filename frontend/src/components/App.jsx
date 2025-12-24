@@ -11,10 +11,12 @@ function App() {
 
   return (
     <div className="container">
-      
-      {gameState ? <Gamecard endGame={toggleGameState} /> : <Resultcard startGame={toggleGameState} />}
 
-      
+      {gameState ? (
+        <Gamecard endGame={toggleGameState} />
+      ) : (
+        <Resultcard startGame={toggleGameState} />
+      )}
     </div>
   );
 }

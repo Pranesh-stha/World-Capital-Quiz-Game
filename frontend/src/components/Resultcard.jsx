@@ -1,16 +1,17 @@
 import React from "react";
 import axios from "axios";
 
-function Resultcard( {startGame} ) {
-
+function Resultcard({ startGame }) {
   async function handlePlayAgain() {
-  await axios.post("http://localhost:5000/reset");
-  startGame();
-}
+    await axios.post("http://localhost:5000/reset");
+    startGame();
+  }
   return (
     <div className="game-over-card active" id="gameOverCard">
       <div className="game-over-header">
-        <h1 className="game-over-title">Quiz Complete! 🎉</h1>
+        <h1 className="game-over-title" role="img" aria-label="success">
+          Quiz Complete! <span role="img" aria-label="success">🎉</span>
+        </h1>
       </div>
 
       <div className="final-score-section">
@@ -23,11 +24,20 @@ function Resultcard( {startGame} ) {
       </div>
 
       <div className="game-over-message">
-        <p>Great job! You're a geography expert! 🌎</p>
+        <p>
+          Great job! You're a geography expert!{" "}
+          <span role="img" aria-label="globe">
+            🌎
+          </span>
+        </p>
       </div>
 
       <div className="game-over-button-group">
-        <button className="btn btn-restart-final" id="playAgainBtn" onClick={handlePlayAgain}>
+        <button
+          className="btn btn-restart-final"
+          id="playAgainBtn"
+          onClick={handlePlayAgain}
+        >
           Play Again
         </button>
       </div>

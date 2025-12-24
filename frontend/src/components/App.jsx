@@ -11,6 +11,7 @@ function App() {
 
   return (
     <div className="container">
+      
 
       {gameState ? (
         <Gamecard endGame={toggleGameState} />

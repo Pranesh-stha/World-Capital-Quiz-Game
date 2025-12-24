@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { celebrateSideCannons } from "./utls/celebrate.js";
 
 function Sendpart({ endGame, submit, setScore }) {
   const [answer, setAnswer] = React.useState("");
+  const [vic, setVic] = React.useState(0);
 
   function handleChange(event) {
     setAnswer(event.target.value);
@@ -14,10 +16,16 @@ function Sendpart({ endGame, submit, setScore }) {
     });
     if (response.data.correct === true) {
       setScore(response.data.score);
+      setVic(response.data.score);
       submit();
       setAnswer("");
     } else {
+      if (vic >= 5) {
+        celebrateSideCannons();
+        setVic(0);
+      }
       endGame();
+      
     }
   }
 

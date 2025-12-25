@@ -4,6 +4,7 @@ import Resultcard from "./Resultcard.jsx";
 
 function App() {
   const [gameState, setGameState] = React.useState(true);
+  const [finalScore, setFinalScore] = React.useState(0)
 
   function toggleGameState() {
     setGameState(!gameState);
@@ -14,9 +15,9 @@ function App() {
       
 
       {gameState ? (
-        <Gamecard endGame={toggleGameState} />
+        <Gamecard endGame={toggleGameState} setFinalScore={setFinalScore}/>
       ) : (
-        <Resultcard startGame={toggleGameState} />
+        <Resultcard startGame={toggleGameState} score={finalScore} setScore={setFinalScore}/>
       )}
     </div>
   );

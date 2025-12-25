@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { celebrateSideCannons } from "./utls/celebrate.js";
 
-function Sendpart({ endGame, submit, setScore }) {
+function Sendpart({ endGame, submit, setScore, newCountry, resultScore }) {
   const [answer, setAnswer] = React.useState("");
   const [vic, setVic] = React.useState(0);
 
@@ -17,6 +17,7 @@ function Sendpart({ endGame, submit, setScore }) {
     if (response.data.correct === true) {
       setScore(response.data.score);
       setVic(response.data.score);
+      resultScore(response.data.score);
       submit();
       setAnswer("");
     } else {
@@ -34,6 +35,12 @@ function Sendpart({ endGame, submit, setScore }) {
       event.preventDefault();
       handleSubmit();
     }
+  }
+
+  async function handlePlayAgain() {
+    const response = await axios.post("http://localhost:5000/reset");
+    newCountry();
+    setScore(response.data.score);
   }
 
   return (
@@ -61,7 +68,7 @@ function Sendpart({ endGame, submit, setScore }) {
         >
           Submit Answer
         </button>
-        <button className="btn btn-restart" id="restartBtn">
+        <button className="btn btn-restart" id="restartBtn" onClick={handlePlayAgain}>
           Restart Game
         </button>
       </div>

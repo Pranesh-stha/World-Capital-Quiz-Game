@@ -25,7 +25,7 @@ app.get('/countries', (req, res) => {
 app.post("/reset", (req, res) => {
   score = 0;
   activeCountry = {};
-  res.json({ ok: true, score });
+  res.json({ ok: true, score: score });
 });
 
 app.post('/submit', (req, res) => {

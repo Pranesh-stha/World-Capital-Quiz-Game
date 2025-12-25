@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 
-function Resultcard({ startGame }) {
+function Resultcard({ startGame, score, setScore }) {
+  
   async function handlePlayAgain() {
     await axios.post("http://localhost:5000/reset");
     startGame();
+    setScore(0);
   }
   return (
     <div className="game-over-card active" id="gameOverCard">
@@ -17,10 +19,10 @@ function Resultcard({ startGame }) {
       <div className="final-score-section">
         <p className="final-score-label">Your Final Score</p>
         <div className="final-score-display">
-          <span className="final-score-value">8</span>
-          <span className="final-score-total">/ 10</span>
+          <span className="final-score-value">{score}</span>
+          
         </div>
-        <p className="score-percentage">80% Correct</p>
+        
       </div>
 
       <div className="game-over-message">

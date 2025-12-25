@@ -2,7 +2,7 @@ import React from "react";
 import Sendpart from "./Sendpart";
 import axios from "axios";
 
-function Gamecard( {endGame} ) {
+function Gamecard( {endGame, setFinalScore} ) {
 
   const [countryData, setCountryData] = React.useState({});
   const [score, setScore] = React.useState(0);
@@ -35,7 +35,7 @@ function Gamecard( {endGame} ) {
           <p className="question-text">What is the capital?</p>
         </div>
 
-        <Sendpart endGame ={endGame} submit={getCountries} setScore={setScore}/>
+        <Sendpart endGame ={endGame} submit={getCountries} setScore={setScore} newCountry={getCountries} resultScore={setFinalScore}/>
       </div>
   )
 }

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import pg from 'pg';
 
 const app = express();
 const PORT = 5000;
@@ -7,11 +8,31 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-const quiz = [
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "World",
+  password: "iamaliv3",
+  port: 5432,
+});
+
+db.connect();
+
+let quiz = [
   { country: "Seychelles", capital: "Victoria" },
   { country: "France", capital: "Paris" },
   { country: "Japan", capital: "Tokyo" },
 ];
+
+db.query("SELECT * FROM capitals", (err,res)=>{
+  if (err){
+    console.log("Error Executing Message", err.stack);
+  } else{
+    quiz = res.rows
+  }
+
+  db.end();
+})
 
 let activeCountry = {};
 let score = 0;

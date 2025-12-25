@@ -27,7 +27,7 @@ function Resultcard({ startGame, score, setScore }) {
 
       <div className="game-over-message">
         <p>
-          Great job! You're a geography expert!{" "}
+          {score > 7 ? "Great job! You're a geography expert!" : "Not so good at geography try again"}{" "}
           <span role="img" aria-label="globe">
             🌎
           </span>

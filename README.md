@@ -119,12 +119,3 @@ http://localhost:3000
 
 ```
 
----
-
-If you want next:
-- ultra-short **GitHub description**
-- a **commit message**
-- or a **deployment-ready README**
-
-just tell me.
-```
